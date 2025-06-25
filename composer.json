@@ -1,0 +1,16 @@
+{
+    "name": "wiiv/shared-models",
+    "description": "Shared database models for Wiiv projects",
+    "type": "library",
+    "require": {
+        "php": "^8.1",
+        "laravel/framework": "^10.0|^11.0",
+        "nesbot/carbon": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wiiv\\Shared\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
