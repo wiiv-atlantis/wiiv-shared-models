@@ -39,12 +39,30 @@ class TenantApiKey extends Model
         'secret_hash',
     ];
 
+    protected $appends = ['requests_count'];
+
+    // Accessor for requests_count
+    public function getRequestsCountAttribute()
+    {
+        // If the relation is already loaded, use it. Otherwise, query it.
+        if ($this->relationLoaded('usageRecords')) {
+            return $this->usageRecords->count();
+        }
+        return $this->usageRecords()->count();
+    }
+
     // Relations
     public function tenant(): BelongsTo
     {
         // This will be resolved by each project's own Tenant model
         $tenantModel = config('wiiv-shared.tenant_model', 'App\\Models\\Tenant');
         return $this->belongsTo($tenantModel, 'tenant_id', 'id');
+    }
+
+    public function usageRecords(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        $usageModel = config('wiiv-shared.tenant_usage_model', TenantUsage::class);
+        return $this->hasMany($usageModel, 'api_key_id', 'id');
     }
 
     // API Key Generation
