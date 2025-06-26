@@ -59,11 +59,11 @@ class TenantApiKey extends Model
         return $this->belongsTo($tenantModel, 'tenant_id', 'id');
     }
 
-    public function usageRecords(): \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        $usageModel = config('wiiv-shared.tenant_usage_model', TenantUsage::class);
-        return $this->hasMany($usageModel, 'api_key_id', 'id');
-    }
+    // public function usageRecords(): \Illuminate\Database\Eloquent\Relations\HasMany
+    // {
+    //     $usageModel = config('wiiv-shared.tenant_usage_model', TenantUsage::class);
+    //     return $this->hasMany($usageModel, 'api_key_id', 'id');
+    // }
 
     // API Key Generation
     public static function generateKey(string $tenantId, string $environment = 'test', array $permissions = []): self
