@@ -153,7 +153,7 @@ class TenantUsage extends Model
                   ->get();
     }
 
-    public static function getDailyStats(Carbon $date = null): array
+    public static function getDailyStats(?Carbon $date = null): array
     {
         $date = $date ?? Carbon::today();
         
