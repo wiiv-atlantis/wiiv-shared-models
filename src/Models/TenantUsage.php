@@ -17,6 +17,7 @@ class TenantUsage extends Model
         'tenant_id',
         'requests_count',
         'last_reset',
+        'api_key_id',
         'quota_limit',
         'usage_date',
     ];
