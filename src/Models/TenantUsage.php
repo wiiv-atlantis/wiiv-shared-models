@@ -57,7 +57,7 @@ class TenantUsage extends Model
         return $usage;
     }
 
-    public static function getUsageForTenant(string $tenantId, Carbon $date = null): ?self
+    public static function getUsageForTenant(string $tenantId, ?Carbon $date = null): ?self
     {
         $date = $date ?? Carbon::today();
         
@@ -66,7 +66,7 @@ class TenantUsage extends Model
                   ->first();
     }
 
-    public static function getTotalUsageForTenant(string $tenantId, Carbon $startDate = null, Carbon $endDate = null): int
+    public static function getTotalUsageForTenant(string $tenantId, ?Carbon $startDate = null, ?Carbon $endDate = null): int
     {
         $query = self::where('tenant_id', $tenantId);
         
@@ -144,7 +144,7 @@ class TenantUsage extends Model
     }
 
     // Statistics Methods
-    public static function getTopUsageTenants(int $limit = 10, Carbon $date = null): \Illuminate\Database\Eloquent\Collection
+    public static function getTopUsageTenants(int $limit = 10, ?Carbon $date = null): \Illuminate\Database\Eloquent\Collection
     {
         $date = $date ?? Carbon::today();
         
